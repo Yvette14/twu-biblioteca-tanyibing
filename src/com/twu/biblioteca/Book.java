@@ -1,45 +1,17 @@
 package com.twu.biblioteca;
 
 public class Book {
-  private String name;
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public String getPublishedYear() {
-    return publishedYear;
-  }
-
-  public void setPublishedYear(String publishedYear) {
-    this.publishedYear = publishedYear;
-  }
-
+  private String title;
   private String author;
   private String publishedYear;
 
-  public Book(String name, String author, String publishedYear) {
-    this.name = name;
+  public Book(String title, String author, String publishedYear) {
+    this.title = title;
     this.author = author;
     this.publishedYear = publishedYear;
   }
 
   public String getBookDetail(){
-    String result = "The book is " + name + "\n";
-    result += "The book is written by " + author + "\n";
-    result += "The book is published in " + publishedYear + "\n";
-    return result;
+    return String.format("title:%-2s author:%-2s publishedYear:%-2s", title, author, publishedYear);
   }
 }
