@@ -1,8 +1,20 @@
 package com.twu.biblioteca;
 
-public class BibliotecaApp {
+import java.io.PrintStream;
+import java.util.List;
 
-  public static void main(String[] args) {
-    System.out.println("Hello, world!");
+public class BibliotecaApp {
+  private PrintStream printStream;
+  private List<Book> bookList;
+
+  public BibliotecaApp(PrintStream printStream, List<Book> bookList) {
+    this.printStream = printStream;
+    this.bookList = bookList;
+  }
+
+  public void displayBooks() {
+    for(Book book:bookList){
+      printStream.println(book.getBookDetail());
+    }
   }
 }
