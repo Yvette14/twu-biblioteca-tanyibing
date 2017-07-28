@@ -30,4 +30,14 @@ public class BibliotecaAppTest {
         bibliotecaApp.displayBooks();
         verify(book1).getBookDetail();
     }
+
+    @Test
+    public void should_list_books(){
+        Book book2 = mock(Book.class);
+        bookList.add(book2);
+        bibliotecaApp.displayBooks();
+        for (Book book : bookList) {
+            verify(book).getBookDetail();
+        }
+    }
 }
