@@ -13,27 +13,29 @@ public class LibraryTest {
   private PrintStream printStream;
   private List<Book> bookList;
   private List<Book> checkedOutBooks;
+  private List<Movie> movieList;
+  private List<Movie> checkedOutMovies;
   private Display display;
   private Library library;
   private Book book1;
+  private Movie movie1;
 
   @Before
   public void setUp() {
     printStream = mock(PrintStream.class);
     display = mock(Display.class);
     checkedOutBooks = new ArrayList<Book>();
+
     bookList = new ArrayList<Book>();
     book1 = mock(Book.class);
     bookList.add(book1);
 
-    library = new Library(printStream, bookList, checkedOutBooks, display);
+    movieList = new ArrayList<Movie>();
+    movie1 = mock(Movie.class);
+    movieList.add(movie1);
 
-  }
+    library = new Library(printStream, bookList, checkedOutBooks, movieList, checkedOutMovies, display);
 
-  @Test
-  public void should_list_one_book_when_book_list_has_only_one() {
-    library.displayBooks();
-    verify(book1).getBookDetail();
   }
 
   @Test
@@ -57,6 +59,43 @@ public class LibraryTest {
 
     verify(printStream).print("1. ");
     verify(printStream).print("2. ");
+  }
+
+  @Test
+  public void should_list_movies() {
+    Movie movie2 = mock(Movie.class);
+    movieList.add(movie2);
+    library.displayMovie();
+    for (Movie movie : movieList) {
+      verify(movie).getMoiveDetail();
+    }
+  }
+
+  @Test
+  public void should_list_movies_with_number() {
+    Movie movie2 = mock(Movie.class);
+    movieList.add(movie2);
+    library.displayMovieWithNumber();
+    for (Movie movie : movieList) {
+      verify(movie).getMoiveDetail();
+    }
+
+    verify(printStream).print("1. ");
+    verify(printStream).print("2. ");
+  }
+
+  @Test
+  public void should_checkout_the_selected_movie() {
+    when(display.getUserInput()).thenReturn("1");
+    library.checkOutMovie();
+    verify(printStream).println("Thank you! Enjoy the movie.");
+  }
+
+  @Test
+  public void should_inform_user_when_check_out_movie_failed() {
+    when(display.getUserInput()).thenReturn("234");
+    library.checkOutMovie();
+    verify(printStream).println("That movie is not available.");
   }
 
   @Test
