@@ -11,14 +11,14 @@ public class Display {
     this.bufferedReader = bufferedReader;
   }
 
-  public String getUserInput(){
+  public String getUserInput() {
     String input = "";
     try {
-      BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
-      input = is.readLine();
+      input = bufferedReader.readLine();
     } catch (IOException e) {
-      System.out.println("IOException: " + e);
+      e.printStackTrace();
     }
+    printStream.println();
     return input;
   }
 

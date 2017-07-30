@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Menu {
   PrintStream printStream;
@@ -13,25 +15,37 @@ public class Menu {
     this.library = library;
   }
 
-  public void displayMenu(){
+  public void displayMenu() {
     printStream.println("-------------------");
     printStream.println("Select an option:  ");
     printStream.println("1. List Books");
+    printStream.println("2. Check Out Book");
+    printStream.println("3. Return Book");
     printStream.println("Q. Quit");
     printStream.println("-------------------");
   }
 
-  public void selectAnOption(){
+  public void selectAnOption() {
+    Map<String, Integer> map = new HashMap<String, Integer>();
     display.displayWelcomeMessage();
     displayMenu();
     String input = display.getUserInput();
+    if (!input.equals("Q")) {
+      map.put(input, Integer.parseInt(input));
+    }
     while (!input.equals("Q")) {
-      if (input.equals("1")) {
-        library.displayBooks();
-
-      } else {
-        printStream.println("Select a valid option!");
-
+      map.put(input, Integer.parseInt(input));
+      switch (map.get(input)) {
+        case 1:
+          library.displayBooks();
+          break;
+        case 2:
+          library.checkOutBook();
+          break;
+        case 3:
+          library.returnBook();
+        default:
+          printStream.println("Select a valid option!");
       }
 
       displayMenu();

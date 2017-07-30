@@ -9,7 +9,7 @@ public class BibliotecaApp {
     InputStreamReader in = new InputStreamReader(System.in);
     BufferedReader reader = new BufferedReader(in);
     Display display = new Display(printStream, reader);
-    Library library = new Library(printStream, bookList());
+    Library library = new Library(printStream, bookList(), checkedOutBooks(), display);
     Menu menu = new Menu(printStream, display, library);
     menu.selectAnOption();
   }
@@ -22,5 +22,12 @@ public class BibliotecaApp {
     bookList.add(book2);
 
     return bookList;
+  }
+
+  public static List<Book> checkedOutBooks() {
+    List<Book> checkedOutBooks = new ArrayList<Book>();
+    Book book = new Book("Book", "Author", "2014");
+    checkedOutBooks.add(book);
+    return checkedOutBooks;
   }
 }

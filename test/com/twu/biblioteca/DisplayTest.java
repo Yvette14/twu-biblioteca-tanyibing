@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import org.junit.*;
 
 import java.io.*;
+
 import static org.mockito.Mockito.*;
 
 public class DisplayTest {
@@ -18,7 +19,7 @@ public class DisplayTest {
   }
 
   @Test
-  public void should_display_welcome_message(){
+  public void should_display_welcome_message() {
     display.displayWelcomeMessage();
     verify(printStream).println("Welcome");
   }
