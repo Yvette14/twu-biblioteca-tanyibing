@@ -15,10 +15,12 @@ public class LibraryTest {
   private List<Book> checkedOutBooks;
   private List<Movie> movieList;
   private List<Movie> checkedOutMovies;
+  private List<User> users;
   private Display display;
   private Library library;
   private Book book1;
   private Movie movie1;
+  private User user;
 
   @Before
   public void setUp() {
@@ -34,7 +36,11 @@ public class LibraryTest {
     movie1 = mock(Movie.class);
     movieList.add(movie1);
 
-    library = new Library(printStream, bookList, checkedOutBooks, movieList, checkedOutMovies, display);
+    users = new ArrayList<User>();
+    user = mock(User.class);
+    users.add(user);
+
+    library = new Library(printStream, bookList, checkedOutBooks, movieList, checkedOutMovies, users, display);
 
   }
 

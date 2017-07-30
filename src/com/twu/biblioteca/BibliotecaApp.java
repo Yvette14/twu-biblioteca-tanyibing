@@ -9,9 +9,14 @@ public class BibliotecaApp {
     InputStreamReader in = new InputStreamReader(System.in);
     BufferedReader reader = new BufferedReader(in);
     Display display = new Display(printStream, reader);
-    Library library = new Library(printStream, bookList(), checkedOutBooks(), movieList(), checkedOutMovies(), display);
+    Library library = new Library(printStream, bookList(), checkedOutBooks(), movieList(), checkedOutMovies(), users(), display);
     Menu menu = new Menu(printStream, display, library);
-    menu.selectAnOption();
+    int index = library.getUserLoginInformation();
+    while (index==-1){
+      printStream.println("You might input wrong library_number or password,please input again");
+      index = library.getUserLoginInformation();
+    }
+    menu.selectAnOption(index);
   }
 
   public static List<Book> bookList() {
@@ -45,5 +50,14 @@ public class BibliotecaApp {
     Movie movie = new Movie("Movie", "2009", "director", 3);
     checkedOutMovies.add(movie);
     return checkedOutMovies;
+  }
+
+  public static List<User> users() {
+    List<User> users = new ArrayList<User>();
+    User user1 = new User("name1", "user1@163.com", "18311112222", "101-1111", "123456");
+    User user2 = new User("name2", "user2@163.com", "15211112222", "111-1111", "123456");
+    users.add(user1);
+    users.add(user2);
+    return users;
   }
 }

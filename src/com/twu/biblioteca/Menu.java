@@ -26,7 +26,7 @@ public class Menu {
     printStream.println("-------------------");
   }
 
-  public void selectAnOption() {
+  public void selectAnOption(int index) {
     Map<String, Integer> map = new HashMap<String, Integer>();
     display.displayWelcomeMessage();
     displayMenu();

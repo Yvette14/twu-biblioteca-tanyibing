@@ -40,35 +40,35 @@ public class BibliotecaAppTest {
   @Test
   public void should_display_welcome_message() {
     when(display.getUserInput()).thenReturn("1","Q");
-    menu.selectAnOption();
+    menu.selectAnOption(1);
     verify(display).displayWelcomeMessage();
   }
 
   @Test
   public void should_display_message_when_input_invalid_option() {
     when(display.getUserInput()).thenReturn("233","Q");
-    menu.selectAnOption();
+    menu.selectAnOption(1);
     verify(printStream).println("Select a valid option!");
   }
 
   @Test
   public void should_display_books() {
     when(display.getUserInput()).thenReturn("1", "Q");
-    menu.selectAnOption();
+    menu.selectAnOption(1);
     verify(library).displayBooks();
   }
 
   @Test
   public void should_check_out_book() {
     when(display.getUserInput()).thenReturn("2", "1", "Q");
-    menu.selectAnOption();
+    menu.selectAnOption(1);
     verify(library).checkOutBook();
   }
 
   @Test
   public void should_return_book() {
     when(display.getUserInput()).thenReturn("3", "1", "Q");
-    menu.selectAnOption();
+    menu.selectAnOption(1);
     verify(library).returnBook();
   }
 }

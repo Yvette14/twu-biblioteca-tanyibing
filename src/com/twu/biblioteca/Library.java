@@ -9,14 +9,16 @@ public class Library {
   private List<Book> checkedOutBooks;
   private List<Movie> movieList;
   private List<Movie> checkedOutMovies;
+  private List<User> users;
   private Display display;
 
-  public Library(PrintStream printStream, List<Book> bookList, List<Book> checkedOutBooks, List<Movie> movieList, List<Movie> checkedOutMovies, Display display) {
+  public Library(PrintStream printStream, List<Book> bookList, List<Book> checkedOutBooks, List<Movie> movieList, List<Movie> checkedOutMovies, List<User> users, Display display) {
     this.printStream = printStream;
     this.bookList = bookList;
     this.checkedOutBooks = checkedOutBooks;
     this.movieList = movieList;
     this.checkedOutMovies = checkedOutMovies;
+    this.users = users;
     this.display = display;
   }
 
@@ -93,5 +95,27 @@ public class Library {
     } else {
       printStream.println("That movie is not available.");
     }
+  }
+
+  public int getUserLoginInformation() {
+    printStream.println("Please input your library number: ");
+    String libraryNumber = display.getUserInput();
+    printStream.println("Please input your password: ");
+    String password = display.getUserInput();
+    return findUserIndexByLibraryNumebrAndPassword(libraryNumber, password);
+  }
+
+  private int findUserIndexByLibraryNumebrAndPassword(String libraryNumber, String password) {
+    int index = -1;
+    for (int i=0;i<users.size();i++) {
+      if (users.get(i).checkLogin(libraryNumber, password)) {
+        index = i;
+      }
+    }
+    return index;
+  }
+
+  public void displayUserInformation(int index) {
+    printStream.println(users.get(index).getUserDetail());
   }
 }
