@@ -21,6 +21,7 @@ public class Menu {
     printStream.println("1. List Books");
     printStream.println("2. Check Out Book");
     printStream.println("3. Return Book");
+    printStream.println("4. Check Out Movie");
     printStream.println("Q. Quit");
     printStream.println("-------------------");
   }
@@ -44,6 +45,10 @@ public class Menu {
           break;
         case 3:
           library.returnBook();
+          break;
+        case 4:
+          library.checkOutMovie();
+          break;
         default:
           printStream.println("Select a valid option!");
       }

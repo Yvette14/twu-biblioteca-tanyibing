@@ -9,7 +9,7 @@ public class BibliotecaApp {
     InputStreamReader in = new InputStreamReader(System.in);
     BufferedReader reader = new BufferedReader(in);
     Display display = new Display(printStream, reader);
-    Library library = new Library(printStream, bookList(), checkedOutBooks(), movieList(), checkedOutMovies(), display);
+    Library library = new Library(printStream, bookList(), checkedOutBooks(), movieList(), checkedOutMovies(4), display);
     Menu menu = new Menu(printStream, display, library);
     menu.selectAnOption();
   }
